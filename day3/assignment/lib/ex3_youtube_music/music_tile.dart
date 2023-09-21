@@ -68,8 +68,8 @@ class MusicTile extends StatelessWidget {
                               size: 16,
                             ),
                           ),
-                        Container(
-                          constraints: BoxConstraints(maxWidth: 200),
+                        Flexible(
+                          // constraints: BoxConstraints(maxWidth: 200),
                           child: Text(
                             artist,
                             maxLines: 1,
