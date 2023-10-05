@@ -1,4 +1,5 @@
 import 'package:assignment/photonecut/photo_screen.dart';
+import 'package:assignment/secret_hair/view/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,7 +9,7 @@ void main() {
         fontFamily: 'neo',
         colorScheme: ColorScheme.dark(),
       ),
-      home: PhotoScreen(),
+      home: HomeScreen(),
     ),
   );
 }
