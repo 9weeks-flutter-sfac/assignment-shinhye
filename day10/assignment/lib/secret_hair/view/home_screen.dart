@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:assignment/secret_hair/view/author_page.dart';
 import 'package:assignment/secret_hair/view/default_layout.dart';
@@ -8,19 +7,32 @@ import 'package:assignment/secret_hair/view/upload_page.dart';
 import 'package:flutter/material.dart';
 import 'package:secret_cat_sdk/api/api.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
+    print('build');
+
     return DefaultLayout(
-      child: Column(
+      child: ListView(
         children: [
-          const _HairPart(),
+          _HairPart(),
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.6),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(80),
+                bottomRight: Radius.circular(60),
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
             ),
             child: const Column(
               children: [
@@ -32,10 +44,19 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 10,
             child: FadeInUp(
               child: Center(
-                child: Text('이거 비밀인데...\n비밀을 들으면 머리가 자라나요'),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                  ),
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  child: Text('이거 비밀인데요...\n비밀을 들으면 머리가 자라나요'),
+                ),
               ),
             ),
           ),
@@ -52,38 +73,40 @@ class _HairPart extends StatelessWidget {
   Widget build(BuildContext context) {
     double adjustedK = MediaQuery.of(context).size.width * 290 / 428;
 
-    return Expanded(
+    return SizedBox(
+      height: MediaQuery.of(context).size.height / 10,
       child: FutureBuilder(
-          future: SecretCatApi.fetchSecrets(),
-          builder: (context, snapshot) {
-            print(snapshot.data);
+        future: SecretCatApi.fetchSecrets(),
+        builder: (context, snapshot) {
+          print(snapshot.data);
 
-            int length = 0;
+          int length = 0;
 
-            if (snapshot.connectionState == ConnectionState.done) {
-              length = snapshot.data!.length;
-            }
+          if (snapshot.connectionState == ConnectionState.done) {
+            length = snapshot.data!.length;
+          }
 
-            return Stack(
-              children: List.generate(
-                length,
-                (index) => Positioned(
-                  bottom: 0,
-                  left: Random().nextDouble() * adjustedK,
-                  child: FadeInDown(
-                    from: 10,
-                    duration: Duration(seconds: 5),
-                    child: Container(
-                      width: 5,
-                      height: 40 + Random().nextInt(10) - 5,
-                      padding: EdgeInsets.symmetric(horizontal: 1),
-                      color: Colors.black,
-                    ),
+          return Stack(
+            children: List.generate(
+              length,
+              (index) => Positioned(
+                bottom: 0,
+                left: Random().nextDouble() * adjustedK,
+                child: FadeInDown(
+                  from: 10,
+                  duration: Duration(milliseconds: 50 * Random().nextInt(100)),
+                  child: Container(
+                    width: 5,
+                    height: 40 + Random().nextInt(50) - 20,
+                    padding: EdgeInsets.symmetric(horizontal: 1),
+                    color: Colors.black,
                   ),
                 ),
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -94,7 +117,7 @@ class _EyePart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) => SecretPage(),
