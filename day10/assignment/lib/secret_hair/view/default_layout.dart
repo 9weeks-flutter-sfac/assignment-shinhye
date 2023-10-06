@@ -4,10 +4,12 @@ import 'package:secret_cat_sdk/api/api.dart';
 class DefaultLayout extends StatefulWidget {
   final Widget child;
   final AppBar? appBar;
+  final VoidCallback? onRefresh;
 
   const DefaultLayout({
     required this.child,
     this.appBar,
+    this.onRefresh,
     super.key,
   });
 
@@ -21,9 +23,10 @@ class _DefaultLayoutState extends State<DefaultLayout> {
     return RefreshIndicator(
       onRefresh: () async {
         await SecretCatApi.fetchSecrets();
-        setState(() {
 
-        });
+        if (widget.onRefresh != null) {
+          widget.onRefresh!();
+        }
       },
       child: Scaffold(
         extendBodyBehindAppBar: true,

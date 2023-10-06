@@ -20,9 +20,16 @@ class _HomeScreenState extends State<HomeScreen> {
     print('build');
 
     return DefaultLayout(
+      onRefresh: (){
+        setState(() {
+
+        });
+      },
       child: ListView(
         children: [
-          _HairPart(),
+          _HairPart(
+
+          ),
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
@@ -48,15 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: MediaQuery.of(context).size.height / 10,
             child: FadeInUp(
               child: Center(
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                  ),
-                  onPressed: () {
-                    setState(() {});
-                  },
-                  child: Text('이거 비밀인데요...\n비밀을 들으면 머리가 자라나요'),
-                ),
+                child: Text('이거 비밀인데요...\n비밀을 들으면 머리가 자라나요'),
               ),
             ),
           ),
