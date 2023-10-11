@@ -22,13 +22,13 @@ class MemberModel {
   final String name;
   final String region;
   final int birthYear;
-  final MBTI mbti;
+  final MBTI? mbti;
 
   MemberModel({
     required this.id,
     required this.name,
     required this.region,
     required this.birthYear,
-    required this.mbti,
+    this.mbti,
   });
 }

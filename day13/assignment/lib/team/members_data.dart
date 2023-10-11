@@ -6,7 +6,6 @@ List<MemberModel> members = [
     name: '이신혜',
     region: '관악구',
     birthYear: 1992,
-    mbti: MBTI.INTJ,
   ),
   MemberModel(
     id: 2,

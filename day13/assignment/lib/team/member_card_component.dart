@@ -40,7 +40,7 @@ class MemberCard extends StatelessWidget {
             ),
           ),
           Text(
-            '💿 ${model.mbti.name}',
+            model.mbti?.name != null ?  '💿 ${model.mbti!.name}' : '아직 몰라요',
             style: const TextStyle(
               color: Colors.indigo,
             ),
