@@ -11,9 +11,9 @@ void main() async {
     MaterialApp(
       // home: RequestScreen(),
       // home: RicksScreen(),
-      home: JobScreen(),
+      // home: JobScreen(),
       // home: DogAlbumScreen(),
-      // home: BlogAppScreen(),
+      home: BlogAppScreen(),
     ),
   );
 }

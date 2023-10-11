@@ -28,11 +28,34 @@ class _DogAlbumScreenState extends State<DogAlbumScreen> {
               if (snapshot.connectionState != ConnectionState.done) {
                 return Container();
               }
-              return Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(snapshot.data!.message),
-                    fit: BoxFit.cover,
+              return GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      content: Image.network(snapshot.data!.message),
+                      actions: [
+                        Center(
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Close'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(snapshot.data!.message),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               );
