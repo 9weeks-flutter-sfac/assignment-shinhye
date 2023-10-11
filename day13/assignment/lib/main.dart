@@ -1,4 +1,5 @@
 import 'package:assignment/assignment/blog_app_screen.dart';
+import 'package:assignment/custom_tablebackend_job/job_screen.dart';
 import 'package:assignment/dog_album/dog_album_screen.dart';
 import 'package:assignment/rickandmorty/ricks_screen.dart';
 import 'package:assignment/serialization_prac/request_screen.dart';
@@ -9,7 +10,8 @@ void main() async {
   runApp(
     MaterialApp(
       // home: RequestScreen(),
-      home: RicksScreen(),
+      // home: RicksScreen(),
+      home: JobScreen(),
       // home: DogAlbumScreen(),
       // home: BlogAppScreen(),
     ),

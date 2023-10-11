@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 class DogModel {
   final String
       message; //: "https://images.dog.ceo/breeds/saluki/n02091831_410.jpg",
@@ -14,4 +16,11 @@ class DogModel {
       status: json['status'],
     );
   }
+
+  @override
+  String toString() {
+    return 'DogModel{message: $message, status: $status}';
+  }
+
+
 }
