@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:assignment/todoapp/component/filter_bottom_sheet.dart';
 import 'package:assignment/todoapp/component/todo_card.dart';
 import 'package:assignment/todoapp/model/todo_model.dart';
@@ -14,43 +13,38 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<TodoModel?> getData(todoNumber) async {
-    final dio = Dio();
-    final resp =
-        await dio.get('https://jsonplaceholder.typicode.com/todos/$todoNumber');
+  @override
+  void initState() {
+    super.initState();
 
-    if (resp.statusCode == 200) {
-      return TodoModel.fromMap(resp.data);
-    }
-
-    return null;
+    readData();
   }
 
-  Future<List<TodoModel>> readData() async {
+  List<TodoModel> todos = [];
+
+  Future readData() async {
     final dio = Dio();
     final resp = await dio.get('https://jsonplaceholder.typicode.com/todos');
 
-    // print(resp.data);
-
     if (resp.statusCode == 200) {
       var data = List<Map<String, dynamic>>.from(resp.data);
-      return data.map((e) => TodoModel.fromMap(e)).toList();
+      todos = data.map((e) => TodoModel.fromMap(e)).toList();
+      setState(() {});
     }
-
-    return [];
-  }
-
-  Future printTodo() async {
-    // var todoNumber = 5;
-    // var data = await getData(todoNumber);
-
-    var data = await readData();
-
-    print(data);
-    return data;
   }
 
   TodoFilter currentFilter = TodoFilter.all;
+
+  List<TodoModel> filterMaker(List<TodoModel> values) {
+    switch (currentFilter) {
+      case TodoFilter.all:
+        return values;
+      case TodoFilter.completed:
+        return values.where((element) => element.completed == true).toList();
+      case TodoFilter.incompleted:
+        return values.where((element) => element.completed != true).toList();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             onPressed: () {
               readData();
+              currentFilter = TodoFilter.all;
               setState(() {});
             },
             icon: Icon(Icons.refresh),
@@ -95,37 +90,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       extendBodyBehindAppBar: true,
-      body: FutureBuilder(
-        future: readData(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-              child: Text('데이터를 불러오는 중입니다.'),
-            );
-          }
-
-          return ListView.builder(
-            itemCount: snapshot.data!.length,
-            itemBuilder: (_, index) {
-              var item = snapshot.data![index];
-
-              if (currentFilter == TodoFilter.completed) {
-                if (item.completed) {
-                  return TodoCard(todo: item);
-                } else {
-                  return Container();
-                }
-              }
-              if (currentFilter == TodoFilter.incompleted) {
-                if (!item.completed) {
-                  return TodoCard(todo: item);
-                } else {
-                  return Container();
-                }
-              }
-              return TodoCard(todo: item);
-            },
-          );
+      body: ListView.builder(
+        itemCount: filterMaker(todos).length,
+        itemBuilder: (_, index) {
+          return TodoCard(todo: filterMaker(todos)[index]);
         },
       ),
     );
