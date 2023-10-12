@@ -1,6 +1,6 @@
 class Dict {
   final String word;
-  final String phonetic;
+  final String? phonetic;
   final List<Phonetics> phonetics;
   final List<Meanings> meanings;
   final License? license;
@@ -8,7 +8,7 @@ class Dict {
 
   const Dict({
     required this.word,
-    required this.phonetic,
+    this.phonetic,
     required this.phonetics,
     required this.meanings,
     required this.license,
@@ -18,7 +18,7 @@ class Dict {
   factory Dict.fromMap(Map<String, dynamic> map) {
     return Dict(
       word: map['word'] as String,
-      phonetic: map['phonetic'] as String,
+      phonetic: map['phonetic'],
       phonetics: List<Map<String, dynamic>>.from(map['phonetics'])
           .map((e) => Phonetics.fromMap(e))
           .toList(),
@@ -32,23 +32,23 @@ class Dict {
 }
 
 class Phonetics {
-  final String text;
+  final String? text;
   final String audio;
-  final String sourceUrl;
+  final String? sourceUrl;
   final License? license;
 
   const Phonetics({
-    required this.text,
+    this.text,
     required this.audio,
-    required this.sourceUrl,
+    this.sourceUrl,
     this.license,
   });
 
   factory Phonetics.fromMap(Map<String, dynamic> map) {
     return Phonetics(
-      text: map['text'] as String,
-      audio: map['audio'] as String,
-      sourceUrl: map['sourceUrl'] as String,
+      text: map['text'],
+      audio: map['audio'],
+      sourceUrl: map['sourceUrl'],
       license: map['license'] == null ? null : License.fromMap(map['license']),
     );
   }
