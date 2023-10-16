@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:get/get.dart';
 
 class TimerController extends GetxController {
-  // Rx<Duration> duration = Rx<Duration>(Duration.zero);
   RxInt seconds = 0.obs;
 
   @override
