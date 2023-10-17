@@ -25,7 +25,7 @@ class CustomTextField extends StatelessWidget {
         hintText: hintText,
         filled: true,
         fillColor: Colors.white,
-        border: OutlineInputBorder(
+        border: const OutlineInputBorder(
           borderSide: BorderSide.none,
         ),
       ),

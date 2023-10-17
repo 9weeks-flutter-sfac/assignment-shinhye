@@ -2,7 +2,6 @@ import 'package:assignment/common/const/style.dart';
 import 'package:assignment/common/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../controller/login_controller.dart';
 
 class LogoutScreen extends GetView<AuthController> {
@@ -36,7 +35,7 @@ class LogoutScreen extends GetView<AuthController> {
               controller.logout();
               Get.lazyPut(() => LoginController());
             },
-            child: Text('로그아웃할까요?'),
+            child: const Text('로그아웃할까요?'),
           ),
         ],
       ),

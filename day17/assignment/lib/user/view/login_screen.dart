@@ -1,7 +1,7 @@
 import 'package:assignment/common/component/custom_textfield.dart';
 import 'package:assignment/common/const/style.dart';
-import 'package:assignment/common/controller/auth_controller.dart';
 import 'package:assignment/user/controller/login_controller.dart';
+import 'package:assignment/user/controller/signup_controller.dart';
 import 'package:assignment/user/view/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,18 +28,18 @@ class LoginScreen extends GetView<LoginController> {
                 fontSize: 24,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             CustomTextField(
               textEditingController: controller.idController,
               hintText: '이메일을 입력하세요',
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
               textEditingController: controller.pwController,
               hintText: '비밀번호를 입력하세요',
               obscureText: true,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -52,7 +52,7 @@ class LoginScreen extends GetView<LoginController> {
                 controller.idController.text = '';
                 controller.pwController.text = '';
               },
-              child: Text('로그인'),
+              child: const Text('로그인'),
             ),
             TextButton(
               style: TextButton.styleFrom(
@@ -61,11 +61,12 @@ class LoginScreen extends GetView<LoginController> {
               ),
               onPressed: () {
                 Get.toNamed(SignupScreen.routeName);
+                Get.put(SignupController());
               },
-              child: Text('회원가입하기'),
+              child: const Text('회원가입하기'),
             ),
-            Text(
-              '임시 계정\nid: abc2@gmail.com\npw: asdfasdfasdf',
+            const Text(
+              '임시 계정\nid: abc9@gmail.com\npw: asdfasdfasdf',
               style: TextStyle(
                 color: Colors.white,
               ),

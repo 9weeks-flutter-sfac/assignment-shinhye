@@ -25,12 +25,6 @@ class UploadController extends GetxController {
       Get.back();
 
       if (res.statusCode == 200) {
-        Get.snackbar(
-          '글을 전송하고 있습니다.',
-          '잠시만 기다려주세요.',
-          backgroundColor: Colors.white,
-        );
-
         Get.find<SecretsController>().readSecrets();
       }
     } on DioException catch (e) {

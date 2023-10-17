@@ -1,10 +1,10 @@
 import 'package:assignment/common/component/custom_textfield.dart';
 import 'package:assignment/common/const/style.dart';
-import 'package:assignment/common/controller/auth_controller.dart';
+import 'package:assignment/user/controller/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SignupScreen extends GetView<AuthController> {
+class SignupScreen extends GetView<SignupController> {
   const SignupScreen({super.key});
 
   static const String routeName = '/signup';
@@ -26,30 +26,29 @@ class SignupScreen extends GetView<AuthController> {
                 fontSize: 24,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             CustomTextField(
-              // textEditingController: controller.idController,
+              textEditingController: controller.createIdController,
               hintText: '이메일을 입력하세요',
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
-              // textEditingController: controller.idController,
+              textEditingController: controller.setPwController,
               hintText: '비밀번호를 입력하세요',
               obscureText: true,
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
-              // textEditingController: controller.idController,
+              textEditingController: controller.setPwCheckController,
               hintText: '비밀번호를 한번 더 입력하세요',
               obscureText: true,
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             CustomTextField(
-              // textEditingController: controller.idController,
+              textEditingController: controller.createUsernameController,
               hintText: '사용할 이름을 입력하세요 (변경할 수 있습니다)',
-              obscureText: true,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -57,13 +56,9 @@ class SignupScreen extends GetView<AuthController> {
                 textStyle: Style.textStyle,
               ),
               onPressed: () {
-                // controller.login();
-                //
-                // controller.idController.text = '';
-                // controller.pwController.text = '';
-                // controller.login('id', 'pw');
+                controller.createAccount();
               },
-              child: Text('인증메일을 전송합니다'),
+              child: const Text('가입하기'),
             ),
             TextButton(
               style: TextButton.styleFrom(
@@ -73,7 +68,7 @@ class SignupScreen extends GetView<AuthController> {
               onPressed: () {
                 Get.back();
               },
-              child: Text('로그인하러 가기'),
+              child: const Text('로그인하러 가기'),
             ),
           ],
         ),

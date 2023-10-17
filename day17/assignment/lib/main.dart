@@ -5,6 +5,7 @@ import 'package:assignment/secret/controller/upload_controller.dart';
 import 'package:assignment/secret/view/main_screen.dart';
 import 'package:assignment/secret/view/upload_screen.dart';
 import 'package:assignment/user/controller/login_controller.dart';
+import 'package:assignment/user/controller/signup_controller.dart';
 import 'package:assignment/user/view/login_screen.dart';
 import 'package:assignment/user/view/logout_screen.dart';
 import 'package:assignment/user/view/signup_screen.dart';
@@ -20,6 +21,7 @@ void main() {
         Get.lazyPut(() => LoginController());
         Get.lazyPut(() => SecretsController());
         Get.lazyPut(() => UploadController());
+        Get.lazyPut(() => SignupController());
       }),
       getPages: [
         GetPage(name: LoginScreen.routeName, page: () => LoginScreen()),
