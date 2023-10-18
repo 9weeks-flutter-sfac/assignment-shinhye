@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "669903400587",
+    "project_id": "sfac-hw18",
+    "storage_bucket": "sfac-hw18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669903400587:android:768e7f22ea64f274046e8e",
+        "android_client_info": {
+          "package_name": "com.example.assignment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5Fh7PRl1p-IjY19Yi3cT7i_1aql3DTMk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
