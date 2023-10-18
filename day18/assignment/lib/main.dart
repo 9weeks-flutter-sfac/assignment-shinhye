@@ -1,4 +1,5 @@
 import 'package:assignment/view/assignment_page.dart';
+import 'package:assignment/view/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: AssignmentPage(),
+      home: LoginPage(),
     );
   }
 }
